@@ -1,1 +1,24 @@
-# online-shop
+# online-shdocument.getElementById('cartItems').innerHTML=cart.length?
+cart.map((p,i)=><p>${p.name} — ${p.price.toLocaleString('uz-UZ')} so‘m <button onclick="removeItem(${i})">O‘chirish</button></p>).join(''):"Savatcha hozircha bo‘sh";
+document.getElementById('total').textContent="Jami: "+cart.reduce((s,p)=>s+p.price,0).toLocaleString('uz-UZ')+" so‘m";
+}
+function removeItem(i){cart.splice(i,1);updateCart();}
+function checkout(e){
+e.preventDefault();
+if(!cart.length){alert("Avval savatga mahsulot qo‘shing");return;}
+const msg="TAYYOR TOVAR BUYURTMASI\nIsm: "+customer.value+"\nTelefon: "+phone.value+"\nManzil: "+address.value+"\nMahsulotlar: "+cart.map(p=>p.name).join(", ")+"\nJami: "+cart.reduce((s,p)=>s+p.price,0)+" so‘m";
+sendToTelegram(msg);
+}
+function sendOrder(e,type){
+e.preventDefault();
+const msg="XORIJDAN ZAKAZ\nSayt: "+site.value+"\nHavola: "+link.value+"\nRazmer/rang: "+size.value+"\nSoni: "+quantity.value+"\nIsm: "+customer1.value+"\nTelefon: "+phone1.value;
+sendToTelegram(msg);
+}
+function sendToTelegram(msg){
+const username="YOUR_TELEGRAM_USERNAME";
+window.open("https://t.me/"+username+"?text="+encodeURIComponent(msg),"_blank");
+}
+updateCart();
+</script>
+</body>
+</html>op
